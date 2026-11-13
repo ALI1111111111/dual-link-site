@@ -68,6 +68,9 @@ h1{font:800 clamp(40px,6.2vw,72px)/1.02 var(--display);letter-spacing:-1.5px;mar
 .events{display:flex;gap:8px;flex-wrap:wrap}
 .ev{font:700 15px var(--body);background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer}
 .ev:hover{border-color:var(--teal)}
+.nudge .ev{animation:nudge 1.6s ease-in-out 3}
+.nudge .ev:nth-child(2){animation-delay:.15s}.nudge .ev:nth-child(3){animation-delay:.3s}
+@keyframes nudge{0%,100%{box-shadow:0 0 0 0 rgba(11,122,117,0)}50%{box-shadow:0 0 0 6px rgba(11,122,117,.28);border-color:var(--teal)}}
 .switch{display:flex;align-items:center;gap:10px;font-weight:700;cursor:pointer;user-select:none}
 .switch input{appearance:none;width:52px;height:30px;border-radius:999px;background:#9aa9a6;position:relative;cursor:pointer;transition:background .2s}
 .switch input::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s}
@@ -263,8 +266,8 @@ footer{color:var(--muted);font-size:15px;padding:36px 0 48px;display:flex;gap:18
     if (sw.checked) tally.innerHTML = caught ? 'You caught <strong>' + caught + '</strong> without getting up.' : 'Dual Link is on. Now tap a button.';
     else tally.innerHTML = missed ? 'You missed <strong>' + missed + '</strong>. The phone was in the drawer.' : 'Try it: tap a button, then switch Dual Link on.';
   };
-  document.querySelectorAll('.ev').forEach(b => b.addEventListener('click', () => {
-    const e = EV[b.dataset.ev];
+  const fire = (key) => {
+    const e = EV[key];
     if (sw.checked) {
       add(A, '', e.title, e.body);
       zip.classList.remove('go'); void zip.offsetWidth; zip.classList.add('go');
@@ -272,8 +275,27 @@ footer{color:var(--muted);font-size:15px;padding:36px 0 48px;display:flex;gap:18
       caught++;
     } else { add(A, 'missed', e.missedTitle, e.missedBody); missed++; }
     say();
-  }));
-  sw.addEventListener('change', () => { demo.classList.toggle('on', sw.checked); say(); });
+  };
+  const setSwitch = (on) => { sw.checked = on; demo.classList.toggle('on', on); };
+
+  // Autoplay: tells the story by itself once the demo is on screen; stops the moment the visitor touches it.
+  let timers = [], userTook = false;
+  const later = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const stopAuto = () => { if (userTook) return; userTook = true; timers.forEach(clearTimeout); demo.classList.remove('nudge'); };
+  const autoplay = () => {
+    tally.textContent = 'Watch: your bank sends a code while the SIM phone is in the drawer…';
+    later(1600, () => { fire('otp'); tally.innerHTML = 'Missed. <strong>The code expired</strong> before you found the phone.'; });
+    later(4200, () => { setSwitch(true); tally.textContent = 'Now with Dual Link on. Someone calls…'; });
+    later(5800, () => { fire('call'); });
+    later(6600, () => { tally.innerHTML = 'It rang on <strong>the phone in your hand</strong>. Your turn: tap a button above.'; demo.classList.add('nudge'); });
+  };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => { if (entries[0].isIntersecting) { io.disconnect(); if (!userTook) autoplay(); } }, { threshold: 0.6 });
+    io.observe(demo);
+  } else autoplay();
+
+  document.querySelectorAll('.ev').forEach(b => b.addEventListener('click', () => { stopAuto(); fire(b.dataset.ev); }));
+  sw.addEventListener('change', () => { stopAuto(); setSwitch(sw.checked); say(); });
 })();
 </script>
 </body>
