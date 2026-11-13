@@ -1,8 +1,135 @@
-<!doctype html><html lang="en"><head><title>Dual Link</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>:root{--fg:#1b1f1e;--bg:#fff;--muted:#56605e;--brand:#0B7A75;--line:#dfe5e4}@media (prefers-color-scheme:dark){:root{--fg:#e8eeed;--bg:#111615;--muted:#a3b0ae;--line:#2a3331}}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}main{max-width:760px;margin:0 auto;padding:32px 16px 64px}a{color:var(--brand)}h1,h2{line-height:1.25}table{border-collapse:collapse;width:100%;font-size:15px}td,th{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}header{display:flex;gap:12px;align-items:center}header img{width:48px;height:48px;border-radius:12px}.muted{color:var(--muted)}img.hero{width:100%;border-radius:16px}</style></head><body><main>
-<header><img src="icon.png" alt=""><h1>Dual Link</h1></header>
-<p>Texts and calls from your SIM phone, on your other phone. Over your own Wi-Fi, end-to-end encrypted, no servers.</p>
-<img class="hero" src="feature.png" alt="Dual Link: two phones linked">
-<h2>How it works</h2><ul><li>Install Dual Link on both phones and scan one QR code to pair them.</li><li>New texts and incoming calls on the SIM phone show up on your other phone in real time.</li><li>Reply from your other phone; the SMS is sent from your SIM, with your usual number.</li></ul>
-<h2>Coming soon</h2><ul><li>iPhone support</li><li>Sync across different networks</li></ul>
-<p><a href="privacy.html">Privacy policy</a> · <a href="mailto:thetechfinn@gmail.com">Contact</a></p>
-<p class="muted">© 2026 AA Utility Solutions</p></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dual Link</title>
+<meta name="description" content="Texts and calls from your SIM phone, on your other phone. Over your own Wi-Fi, end-to-end encrypted, no servers.">
+<meta property="og:title" content="Dual Link">
+<meta property="og:description" content="Texts and calls from your SIM phone, on your other phone.">
+<meta property="og:image" content="https://ali1111111111.github.io/dual-link-site/feature.png">
+<link rel="icon" href="icon.png">
+<style>
+:root{--bg:#f6faf9;--fg:#14201e;--muted:#56645f;--brand:#0B7A75;--brand2:#086560;--card:#fff;--line:#dbe6e3}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1514;--fg:#e7efed;--muted:#9fb0ab;--card:#172120;--line:#26332f}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--brand)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+nav{display:flex;align-items:center;gap:12px;padding:16px 0}
+nav img{width:36px;height:36px;border-radius:9px}
+nav b{font-size:18px}
+nav .sp{flex:1}
+nav a.lnk{color:var(--muted);text-decoration:none;font-size:15px}
+.hero{background:linear-gradient(135deg,#0E918B,#075E59);color:#fff;border-radius:24px;padding:40px 28px;display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:center}
+.hero h1{margin:0 0 10px;font-size:clamp(30px,5vw,46px);line-height:1.1}
+.hero p{margin:0 0 20px;font-size:18px;opacity:.95}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chips span{border:1.5px solid rgba(255,255,255,.7);border-radius:20px;padding:3px 12px;font-size:14px}
+.btn{display:inline-block;padding:12px 20px;border-radius:12px;font-weight:600;text-decoration:none;margin:4px 8px 4px 0}
+.btn.pri{background:#fff;color:var(--brand2)}
+.btn.sec{border:1.5px solid rgba(255,255,255,.8);color:#fff}
+.hero .shot{justify-self:center;width:min(260px,70vw);border-radius:28px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+section{padding:40px 0 8px}
+h2{font-size:26px;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.card h3{margin:0 0 6px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.shots{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.shots img{height:420px;border-radius:18px;scroll-snap-align:start;border:1px solid var(--line)}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.vids iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:14px}
+.tester{background:var(--card);border:2px solid var(--brand);border-radius:20px;padding:24px}
+.tester ol{margin:8px 0 16px;padding-left:22px}
+.tester .btn.pri{background:var(--brand);color:#fff}
+.tester .btn.sec{border-color:var(--brand);color:var(--brand)}
+footer{color:var(--muted);font-size:14px;padding:36px 0;border-top:1px solid var(--line);margin-top:40px;display:flex;gap:16px;flex-wrap:wrap}
+@media (max-width:720px){.hero{grid-template-columns:1fr;padding:28px 20px}.shots img{height:340px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><img src="icon.png" alt=""><b>Dual Link</b><span class="sp"></span>
+<a class="lnk" href="#test">Become a tester</a><a class="lnk" href="https://github.com/ALI1111111111/dual-link">GitHub</a></nav>
+
+<div class="hero">
+  <div>
+    <h1>Texts and calls from your SIM phone, on your other phone.</h1>
+    <p>Leave the phone with your SIM at home. Read, reply and see calls on the phone you actually carry.</p>
+    <div class="chips"><span>Same Wi-Fi</span><span>End-to-end encrypted</span><span>No servers</span><span>Open source</span></div>
+    <a class="btn pri" href="#test">Join the test on Google Play</a>
+    <a class="btn sec" href="https://github.com/ALI1111111111/dual-link">View on GitHub</a>
+  </div>
+  <img class="shot" src="img/01-messages.jpg" alt="Dual Link messages screen">
+</div>
+
+<section>
+<h2>How it works</h2>
+<div class="grid">
+  <div class="card"><h3>1. Pair once</h3><p>Install on both phones and scan one QR code. No accounts.</p></div>
+  <div class="card"><h3>2. Texts arrive instantly</h3><p>New SMS on Phone A appear on Phone B in about a second, with one-tap code copy.</p></div>
+  <div class="card"><h3>3. Reply with your number</h3><p>Replies go out from Phone A's SIM. Pick the SIM on dual-SIM phones.</p></div>
+  <div class="card"><h3>4. Calls ring on Phone B</h3><p>See who's calling, decline or reply by SMS, and check call history.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Screenshots</h2>
+<div class="shots">
+  <img src="img/01-messages.jpg" alt="Messages"><img src="img/02-reply.jpg" alt="Reply">
+  <img src="img/03-otp.jpg" alt="One-time codes"><img src="img/04-call.jpg" alt="Incoming call">
+  <img src="img/05-history.jpg" alt="Call history"><img src="img/06-gateway.jpg" alt="Phone A">
+  <img src="img/07-private.jpg" alt="Privacy notice"><img src="img/08-setup.jpg" alt="Setup">
+</div>
+</section>
+
+<section>
+<h2>See it in action</h2>
+<div class="vids">
+  <iframe src="https://www.youtube-nocookie.com/embed/5dDzYh4ltAI" title="Dual Link promo" loading="lazy" allowfullscreen></iframe>
+  <iframe src="https://www.youtube-nocookie.com/embed/RPbOyae_HIw" title="Dual Link walkthrough" loading="lazy" allowfullscreen></iframe>
+</div>
+</section>
+
+<section>
+<h2>Private by design</h2>
+<div class="grid">
+  <div class="card"><h3>Phone to phone</h3><p>Your two phones talk directly over your Wi-Fi. Nothing is uploaded anywhere.</p></div>
+  <div class="card"><h3>Encrypted</h3><p>AES-256-GCM with a key created on your phone during pairing.</p></div>
+  <div class="card"><h3>No tracking</h3><p>No accounts, no ads, no analytics. Read the code on GitHub.</p></div>
+  <div class="card"><h3>Reliable</h3><p>Messages are queued and delivered once, never lost or duplicated, even if Wi-Fi drops.</p></div>
+</div>
+</section>
+
+<section id="test">
+<div class="tester">
+<h2>Help us launch on Google Play</h2>
+<p>Dual Link is in closed testing. Google needs 12 testers who keep the app for 14 days before it can go public. It takes two minutes:</p>
+<ol>
+  <li>Join the testing group with your Google account.</li>
+  <li>Tap "Become a tester" on the Google Play test page.</li>
+  <li>Install Dual Link and keep it for 14 days. One phone is enough to try it.</li>
+</ol>
+<a class="btn pri" href="https://groups.google.com/g/dual-link-testers">1. Join the testing group</a>
+<a class="btn sec" href="https://play.google.com/apps/testing/com.duallink.app">2. Become a tester</a>
+</div>
+</section>
+
+<section>
+<h2>Coming soon</h2>
+<div class="grid">
+  <div class="card"><h3>iPhone support</h3><p>Use an iPhone as your everyday phone (Phone B).</p></div>
+  <div class="card"><h3>Any network</h3><p>Sync when the two phones are on different networks.</p></div>
+</div>
+</section>
+
+<footer>
+  <span>© 2026 Ali Akbar · AA Utility Solutions</span>
+  <a href="privacy.html">Privacy policy</a>
+  <a href="https://github.com/ALI1111111111/dual-link">Source code (GPL-3.0)</a>
+  <a href="mailto:thetechfinn@gmail.com">Contact</a>
+</footer>
+</div>
+</body>
+</html>
